@@ -3,4 +3,13 @@
     <string name="app_name">AndroidLabs</string>
     <string name="hello_message">Bongiorno</string>
     <string name="ButtonText">Questo e un pulsante</string>
+    <string name="login">Accesso</string>
+    <string name="login_hint">nome di accesso</string>
+    <string name="password">Password</string>
+    <string name="password_hint">inserire la password</string>
+    <string name="flag_description">Bandiera italiana</string>
+    <string name="radio_button">pulsante di scelta</string>
+    <string name="check_box">casella di controllo</string>
+    <string name="switch_text">Cosa fa questo?</string>
+    <string name="image_button_desc">immagine della fotocamera</string>
 </resources>

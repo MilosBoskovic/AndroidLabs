@@ -3,4 +3,13 @@
     <string name="app_name">AndroidLabs</string>
     <string name="hello_message">Dobro Dosli</string>
     <string name="ButtonText">Ovo je Dugme</string>
+    <string name="login">Prijavite se</string>
+    <string name="login_hint">Korisničko ime</string>
+    <string name="password">Lozinka</string>
+    <string name="password_hint">ukucajte lozinku</string>
+    <string name="flag_description">Srpska Zastava</string>
+    <string name="radio_button">Radio Dugme</string>
+    <string name="check_box">Polje za potvrdu</string>
+    <string name="switch_text">Šta ovo radi?</string>
+    <string name="image_button_desc">slika kamere</string>
 </resources>
