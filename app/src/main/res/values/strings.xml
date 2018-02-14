@@ -13,4 +13,8 @@
     <string name="switch_text">What does this do?</string>
     <string name="image_button_desc">camera picture</string>
     <string name="login_button">Login</string>
+    <string name="dialog_message">Do you want to finish the activity?</string>
+    <string name="dialog_title">Done?</string>
+    <string name="ok">Yes</string>
+    <string name="cancel">No</string>
 </resources>

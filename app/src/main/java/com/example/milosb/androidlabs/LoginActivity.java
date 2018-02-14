@@ -13,7 +13,7 @@ import android.widget.EditText;
 public class LoginActivity extends Activity {
 
     protected static final String ACTIVITY_NAME = "LoginActivity";
-    Button loginButton = (Button) findViewById(R.id.login_button) ;
+
     //Context context;
 
     @Override
@@ -22,20 +22,30 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         Log.i(ACTIVITY_NAME, "In onCreate()");
 
-        SharedPreferences preferences = getSharedPreferences("email", Context.MODE_PRIVATE);
-       final SharedPreferences.Editor edit = preferences.edit(); //edit the file
+        final SharedPreferences preferences = getSharedPreferences("DefaultEmail", Context.MODE_PRIVATE);
+        final SharedPreferences.Editor edit = preferences.edit(); //edit the file
 
+        Button loginButton = (Button) findViewById(R.id.login_button) ;
 
-        preferences.getString("DefaultEmail", "email@domain.com");
+        edit.putString("DefaultEmail", "example@domain.com");
 
 
         final EditText loginText = (EditText) findViewById(R.id.email);
 
+        // not sure if it is needed yet....
+        //preferences.getString("DefaultEmail", "email@domain.com");
+
+        // shows the e-mail address stored in the DefaultEmail field of preferences as a hint for login
+        loginText.setHint(preferences.getString("DefaultEmail", "email@domain.com"));
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // sets the e-mail typed into login field to the DefaultEmail field in the preferences file
                 edit.putString("DefaultEmail", loginText.getText().toString());
                 edit.commit();
+
 
                 Intent intent = new Intent(LoginActivity.this, StartActivity.class);
                 startActivity(intent);
