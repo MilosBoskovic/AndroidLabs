@@ -13,5 +13,8 @@
     <string name="switch_text">Šta ovo radi?</string>
     <string name="image_button_desc">slika kamere</string>
     <string name="login_button">Ukljucite se</string>
-    <string name="dialog_message">Do you want to finish the activity?</string>
+    <string name="dialog_message">Dali zelite zavrsiti rad?</string>
+    <string name="dialog_title">Gotovi?</string>
+    <string name="ok">Da</string>
+    <string name="cancel">Ne</string>
 </resources>
