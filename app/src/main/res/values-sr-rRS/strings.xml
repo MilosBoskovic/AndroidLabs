@@ -12,4 +12,5 @@
     <string name="check_box">Polje za potvrdu</string>
     <string name="switch_text">Šta ovo radi?</string>
     <string name="image_button_desc">slika kamere</string>
+    <string name="login_button">Ukljucite se</string>
 </resources>

@@ -12,4 +12,5 @@
     <string name="check_box">CheckBox</string>
     <string name="switch_text">What does this do?</string>
     <string name="image_button_desc">camera picture</string>
+    <string name="login_button">Login</string>
 </resources>

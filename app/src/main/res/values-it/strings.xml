@@ -12,4 +12,5 @@
     <string name="check_box">casella di controllo</string>
     <string name="switch_text">Cosa fa questo?</string>
     <string name="image_button_desc">immagine della fotocamera</string>
+    <string name="login_button">Accesso</string>
 </resources>
