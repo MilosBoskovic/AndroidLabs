@@ -3,12 +3,14 @@ package com.example.milosb.androidlabs;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,7 @@ public class ChatWindow extends Activity {
     EditText chatText;
     Button sendButton;
 
-    ArrayList<String> chatHistory = new ArrayList<>();
+    ArrayList<String> chatHistory;// = new ArrayList<>();
 
 
     @Override
@@ -26,15 +28,25 @@ public class ChatWindow extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_window);
 
-        chatList = findViewById(R.id.chatList);
-        chatText = findViewById(R.id.chatText);
-        sendButton = findViewById(R.id.send_button);
+        chatList = (ListView) findViewById(R.id.chatList);
+        chatText = (EditText) findViewById(R.id.chatText336);
+        sendButton = (Button) findViewById(R.id.send_button);
+        chatHistory = new ArrayList<>(5);
+
+        //in this case, “this” is the ChatWindow, which is-A Context object
+        final ChatAdapter messageAdapter = new ChatAdapter( this );
+        chatList.setAdapter(messageAdapter);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 chatHistory.add(chatText.getText().toString());
+
+                messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount() & getView()
+                chatText.setText("");
+
+
             }
         });
     }
@@ -56,10 +68,27 @@ public class ChatWindow extends Activity {
             return chatHistory.get(position);
         }
 
-        //TODO: this returns the layout that will be positioned at the specified row in the list. Do this in step 9.
+        //this returns the layout that will be positioned at the specified row in the list
         public View getView(int position, View convertView, ViewGroup parent) {
 
-            return null;
+            LayoutInflater inflater = ChatWindow.this.getLayoutInflater();
+
+            // This will recreate your View that you made in the resource file. If the position is
+            // an even number (position%2 == 0), then inflate chat_row_incoming, else inflate
+            // chat_row_outgoing
+
+            View result = null ;
+            if(position%2 == 0)
+                result = inflater.inflate(R.layout.chat_row_incoming, null);
+            else
+                result = inflater.inflate(R.layout.chat_row_outgoing, null);
+
+            //From the resulting view, get the TextView which holds the string message
+
+            TextView message = (TextView) result.findViewById(R.id.chatText336);
+            //message.setText(   getItem(position)  ); // get the string at position
+            message.setText(getItem(position));
+            return result;
         }
 
         // This is the database id of the item at position. For now, we aren’t using SQL, so just return the number: position.

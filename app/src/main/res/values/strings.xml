@@ -18,4 +18,7 @@
     <string name="ok">Yes</string>
     <string name="cancel">No</string>
     <string name="start_chat">Start Chat</string>
+    <string name="send">send</string>
+    <string name="outgoing_chat_img_desc">anonymous</string>
+    <string name="incoming_chat_img_desc">anonymous_filled</string>
 </resources>

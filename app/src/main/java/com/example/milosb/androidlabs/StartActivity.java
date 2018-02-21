@@ -34,6 +34,9 @@ public class StartActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Log.i(ACTIVITY_NAME, "User Clicked Start Chat");
+
+                Intent chatIntent = new Intent(StartActivity.this, ChatWindow.class);
+                startActivity(chatIntent);
             }
         });
     }
@@ -41,7 +44,9 @@ public class StartActivity extends Activity {
     @Override
     public void onActivityResult( int requestCode, int resultCode, Intent data) {
         if(resultCode == 50) {
+
             Log.i(ACTIVITY_NAME, "Returned to StartActivity.onActivityResult");
+
         } else if (resultCode == Activity.RESULT_OK) {
             String messagePassed = data.getStringExtra("Response");
 
@@ -50,7 +55,6 @@ public class StartActivity extends Activity {
 
             Toast toast = Toast.makeText(this , text, duration); //this is the ListActivity
             toast.show(); //display your message box
-
         }
     }
 
