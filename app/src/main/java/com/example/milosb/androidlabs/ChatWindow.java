@@ -20,7 +20,7 @@ public class ChatWindow extends Activity {
     EditText chatText;
     Button sendButton;
 
-    ArrayList<String> chatHistory;// = new ArrayList<>();
+    ArrayList<String> chatHistory = new ArrayList<>();
 
 
     @Override
@@ -31,7 +31,7 @@ public class ChatWindow extends Activity {
         chatList = (ListView) findViewById(R.id.chatList);
         chatText = (EditText) findViewById(R.id.chatText336);
         sendButton = (Button) findViewById(R.id.send_button);
-        chatHistory = new ArrayList<>(5);
+        //chatHistory = new ArrayList<>(5);
 
         //in this case, “this” is the ChatWindow, which is-A Context object
         final ChatAdapter messageAdapter = new ChatAdapter( this );
@@ -41,12 +41,10 @@ public class ChatWindow extends Activity {
             @Override
             public void onClick(View view) {
 
-                chatHistory.add(chatText.getText().toString());
-
                 messageAdapter.notifyDataSetChanged(); //this restarts the process of getCount() & getView()
+
+                chatHistory.add(chatText.getText().toString());
                 chatText.setText("");
-
-
             }
         });
     }
@@ -85,7 +83,7 @@ public class ChatWindow extends Activity {
 
             //From the resulting view, get the TextView which holds the string message
 
-            TextView message = (TextView) result.findViewById(R.id.chatText336);
+            TextView message = (TextView) result.findViewById(R.id.message_text);
             //message.setText(   getItem(position)  ); // get the string at position
             message.setText(getItem(position));
             return result;
