@@ -17,4 +17,5 @@
     <string name="dialog_title">Done?</string>
     <string name="ok">Yes</string>
     <string name="cancel">No</string>
+    <string name="start_chat">Start Chat</string>
 </resources>
