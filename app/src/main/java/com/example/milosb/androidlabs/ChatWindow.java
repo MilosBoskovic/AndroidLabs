@@ -59,7 +59,7 @@ public class ChatWindow extends Activity {
             do {
                 String message = cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE));
                 chatHistory.add(message);
-                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + cursor.getString(cursor.getColumnIndex(ChatDatabaseHelper.KEY_MESSAGE)));
+                Log.i(ACTIVITY_NAME, "SQL MESSAGE: " + message);
                 cursor.moveToNext();
             } while (!cursor.isAfterLast());
         }
