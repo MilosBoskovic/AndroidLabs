@@ -21,4 +21,8 @@
     <string name="send">send</string>
     <string name="outgoing_chat_img_desc">anonymous</string>
     <string name="incoming_chat_img_desc">anonymous_filled</string>
+    <string name="weather_forecast">Weather Forecast</string>
+    <string name="current_temp">Current Temperature: </string>
+    <string name="min_temp">Min Temperature: </string>
+    <string name="max_temp">Max Temperature: </string>
 </resources>

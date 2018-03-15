@@ -21,4 +21,8 @@
     <string name="send">pošalji</string>
     <string name="outgoing_chat_img_desc">anonymous</string>
     <string name="incoming_chat_img_desc">anonymous_filled</string>
+    <string name="weather_forecast">Vremenska Prognoza</string>
+    <string name="current_temp">Trenutna Temperatura: </string>
+    <string name="min_temp">Niska Temperatura: </string>
+    <string name="max_temp">Visoka Temperatura: </string>
 </resources>

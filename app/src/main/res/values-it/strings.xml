@@ -21,4 +21,8 @@
     <string name="send">spedire</string>
     <string name="outgoing_chat_img_desc">anonymous</string>
     <string name="incoming_chat_img_desc">anonymous_filled</string>
+    <string name="weather_forecast">Previsioni del Tempo</string>
+    <string name="current_temp">Current Temperature: </string>
+    <string name="min_temp">Temperatura minima: </string>
+    <string name="max_temp">Temperatura massima: </string>
 </resources>
