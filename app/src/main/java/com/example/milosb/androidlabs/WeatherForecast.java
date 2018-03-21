@@ -122,11 +122,15 @@ public class WeatherForecast extends Activity {
 
                         String iconFile = iconName+".png";
 
+                        Log.i(ACTIVITY_NAME, " subclass ForecastQuery: searching for image " + iconFile);
+
+
                         if(fileExistance(iconFile)) {
 
                             FileInputStream fis = null;
                             try {
                                 fis = new FileInputStream(getBaseContext().getFileStreamPath(iconFile));
+                                Log.i(ACTIVITY_NAME, " subclass ForecastQuery: image found.");
                             }
                             catch (FileNotFoundException e) {
                                 e.printStackTrace();
@@ -134,6 +138,8 @@ public class WeatherForecast extends Activity {
                             icon = BitmapFactory.decodeStream(fis);
 
                         } else {
+
+                            Log.i(ACTIVITY_NAME, " subclass ForecastQuery: downloading image from server");
 
                             icon = getImage("http://openweathermap.org/img/w/" + iconName + ".png");
 
