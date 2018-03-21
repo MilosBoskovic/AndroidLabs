@@ -31,6 +31,7 @@ public class WeatherForecast extends Activity {
     private TextView currentTemp;
     private TextView minTemp;
     private TextView maxTemp;
+    private TextView windSpd;
     private ImageView weatherImage;
 
     private ProgressBar progressBar;
@@ -39,10 +40,12 @@ public class WeatherForecast extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
+        Log.i(ACTIVITY_NAME, "In onCreate");
 
         currentTemp = (TextView) findViewById(R.id.current_temp);
         minTemp = (TextView) findViewById(R.id.min_temp);
         maxTemp = (TextView) findViewById(R.id.max_temp);
+        windSpd = (TextView) findViewById(R.id.wind_speed);
         weatherImage = (ImageView) findViewById(R.id.weather_pic);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
@@ -64,11 +67,13 @@ public class WeatherForecast extends Activity {
         String windSpeed;
         String iconName;
         String weatherValue;
+        String degree = "\u00b0";
         Bitmap icon;
 
 
         @Override
         protected String doInBackground(String... args){
+            Log.i(ACTIVITY_NAME, " subclass ForecastQuery: In doInBackground");
 
             try{
                 URL url = new URL(args[0]);
@@ -83,9 +88,7 @@ public class WeatherForecast extends Activity {
                 InputStream stream = conn.getInputStream();
 
                 XmlPullParser parser = Xml.newPullParser();
-                //parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
                 parser.setInput(stream, null);
-                //parser.nextTag();
 
                 while(parser.next() != XmlPullParser.END_DOCUMENT) {
 
@@ -97,17 +100,18 @@ public class WeatherForecast extends Activity {
                     if(parser.getName().equals("temperature")){
 
                         current = parser.getAttributeValue(null, "value");
-                        publishProgress(25);
+                        publishProgress(20);
                         min = parser.getAttributeValue(null, "min");
-                        publishProgress(50);
+                        publishProgress(40);
                         max = parser.getAttributeValue(null, "max");
-                        publishProgress(75);
+                        publishProgress(60);
 
                     }
 
-                    if(parser.getName().equals("wind")){
+                    if(parser.getName().equals("speed")){
 
-                        windSpeed = parser.getAttributeValue(null, "speed");
+                        windSpeed = parser.getAttributeValue(null, "value");
+                        publishProgress(80);
 
                     }
 
@@ -154,7 +158,7 @@ public class WeatherForecast extends Activity {
         @Override
         public void onProgressUpdate(Integer... value){
 
-            Log.i(ACTIVITY_NAME, "In onProgressUpdate");
+            Log.i(ACTIVITY_NAME, "subclass ForecastQuery: In onProgressUpdate");
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(value[0]);
 
@@ -163,9 +167,13 @@ public class WeatherForecast extends Activity {
         @Override
         public void onPostExecute(String value){
 
-            currentTemp.setText(currentTemp.getText()+current+"C");
-            minTemp.setText(minTemp.getText()+min+"C");
-            maxTemp.setText(maxTemp.getText()+max+"C");
+            Log.i(ACTIVITY_NAME, "subclass ForecastQuery: In onPostExecute");
+
+
+            currentTemp.setText(currentTemp.getText()+current+degree+"C");
+            minTemp.setText(minTemp.getText()+min+degree+"C");
+            maxTemp.setText(maxTemp.getText()+max+degree+"C");
+            windSpd.setText(windSpd.getText()+ windSpeed+" km/h");
             weatherImage.setImageBitmap(icon);
             progressBar.setVisibility(View.INVISIBLE);
 
@@ -173,11 +181,13 @@ public class WeatherForecast extends Activity {
     } // end of class ForecastQuery
 
     public boolean fileExistance(String fname){
+        Log.i(ACTIVITY_NAME, "In fileExistance");
         File file = getBaseContext().getFileStreamPath(fname);
         return file.exists();
     } // end of fileExistance
 
     public static Bitmap getImage(URL url) {
+        Log.i(ACTIVITY_NAME, "In getImage(URL url)");
         HttpURLConnection connection = null;
         try {
             connection = (HttpURLConnection) url.openConnection();
@@ -197,6 +207,7 @@ public class WeatherForecast extends Activity {
     } // end of getImage(URL url)
 
     public static Bitmap getImage(String urlString) {
+        Log.i(ACTIVITY_NAME, "In getImage(String urlString)");
         try {
             URL url = new URL(urlString);
             return getImage(url);

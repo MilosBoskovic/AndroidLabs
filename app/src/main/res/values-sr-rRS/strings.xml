@@ -25,4 +25,5 @@
     <string name="current_temp">Trenutna Temperatura: </string>
     <string name="min_temp">Niska Temperatura: </string>
     <string name="max_temp">Visoka Temperatura: </string>
+    <string name="wind_spd">Vetar: </string>
 </resources>
