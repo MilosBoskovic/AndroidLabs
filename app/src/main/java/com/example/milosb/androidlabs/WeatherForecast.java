@@ -55,38 +55,6 @@ public class WeatherForecast extends Activity {
 
     }
 
-    public boolean fileExistance(String fname){
-        File file = getBaseContext().getFileStreamPath(fname);
-        return file.exists();
-    }
-
-    public static Bitmap getImage(URL url) {
-        HttpURLConnection connection = null;
-        try {
-            connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-            int responseCode = connection.getResponseCode();
-            if (responseCode == 200) {
-                return BitmapFactory.decodeStream(connection.getInputStream());
-            } else
-                return null;
-        } catch (Exception e) {
-            return null;
-        } finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
-        }
-    }
-    public static Bitmap getImage(String urlString) {
-        try {
-            URL url = new URL(urlString);
-            return getImage(url);
-        } catch (MalformedURLException e) {
-            return null;
-        }
-    }
-
 
     public class ForecastQuery extends AsyncTask<String, Integer, String> {
 
@@ -120,6 +88,8 @@ public class WeatherForecast extends Activity {
                 //parser.nextTag();
 
                 while(parser.next() != XmlPullParser.END_DOCUMENT) {
+
+                    // only need to look for starting tags
                     if(parser.getEventType() != XmlPullParser.START_TAG){
                         continue;
                     }
@@ -151,8 +121,12 @@ public class WeatherForecast extends Activity {
                         if(fileExistance(iconFile)) {
 
                             FileInputStream fis = null;
-                            try {    fis = new FileInputStream(getBaseContext().getFileStreamPath(iconFile));   }
-                            catch (FileNotFoundException e) {    e.printStackTrace();  }
+                            try {
+                                fis = new FileInputStream(getBaseContext().getFileStreamPath(iconFile));
+                            }
+                            catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
                             icon = BitmapFactory.decodeStream(fis);
 
                         } else {
@@ -175,7 +149,7 @@ public class WeatherForecast extends Activity {
             }
 
             return null;
-        }
+        } // end of doInBackground
 
         @Override
         public void onProgressUpdate(Integer... value){
@@ -184,7 +158,7 @@ public class WeatherForecast extends Activity {
             progressBar.setVisibility(View.VISIBLE);
             progressBar.setProgress(value[0]);
 
-        }
+        } // end of onProgressUpdate
 
         @Override
         public void onPostExecute(String value){
@@ -195,6 +169,40 @@ public class WeatherForecast extends Activity {
             weatherImage.setImageBitmap(icon);
             progressBar.setVisibility(View.INVISIBLE);
 
+        } // end of onPostExecute
+    } // end of class ForecastQuery
+
+    public boolean fileExistance(String fname){
+        File file = getBaseContext().getFileStreamPath(fname);
+        return file.exists();
+    } // end of fileExistance
+
+    public static Bitmap getImage(URL url) {
+        HttpURLConnection connection = null;
+        try {
+            connection = (HttpURLConnection) url.openConnection();
+            connection.connect();
+            int responseCode = connection.getResponseCode();
+            if (responseCode == 200) {
+                return BitmapFactory.decodeStream(connection.getInputStream());
+            } else
+                return null;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
         }
-    }
-}
+    } // end of getImage(URL url)
+
+    public static Bitmap getImage(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            return getImage(url);
+        } catch (MalformedURLException e) {
+            return null;
+        }
+    } // end of getImage(String urlString)
+
+} //end of class WeatherForecast
