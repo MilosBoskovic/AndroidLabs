@@ -26,4 +26,5 @@
     <string name="min_temp">Min Temperature: </string>
     <string name="max_temp">Max Temperature: </string>
     <string name="wind_spd">Wind Speed: </string>
+    <string name="delete_msg">Delete This Message</string>
 </resources>
