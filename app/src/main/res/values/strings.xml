@@ -27,4 +27,8 @@
     <string name="max_temp">Max Temperature: </string>
     <string name="wind_spd">Wind Speed: </string>
     <string name="delete_msg">Delete This Message</string>
+    <string name="title_activity_test_toolbar">AndroidLabs</string>
+    <string name="toolbar_btn">Start Toolbar</string>
+    <string name="go_back">Do you want to go back?</string>
+    <string name="enter_msg">Enter Message: </string>
 </resources>

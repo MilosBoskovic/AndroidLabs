@@ -21,6 +21,14 @@ public class StartActivity extends Activity {
         Button startButton = (Button) findViewById(R.id.button);
         Button chatButton = findViewById(R.id.chat_button);
         Button weatherButton = (Button) findViewById(R.id.weather_button);
+        Button testToolbar = (Button) findViewById(R.id.start_toolbar);
+
+        testToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(StartActivity.this, TestToolbar.class));
+            }
+        });
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override

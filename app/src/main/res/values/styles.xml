@@ -5,4 +5,6 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="MI336" parent="android:Theme.Holo.Light.DarkActionBar" />
+
 </resources>
